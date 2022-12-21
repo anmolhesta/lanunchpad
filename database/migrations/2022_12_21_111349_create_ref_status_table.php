@@ -13,7 +13,7 @@ class CreateRefStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('ref_status', function (Blueprint $table) {
+        Schema::create('ref_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateRefStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ref_status');
+        Schema::dropIfExists('ref_statuses');
     }
 }

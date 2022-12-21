@@ -13,9 +13,9 @@ class CreateUserProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_profile', function (Blueprint $table) {
+        Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('profile_picture',200);
+            $table->string('profile_picture',200)->nullable();
             $table->string('current_school_name',200)->nullable();;
             $table->string('previous_school_name',200)->nullable();;
             $table->string('parent_details',200)->nullable();;
@@ -35,6 +35,6 @@ class CreateUserProfileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_profile');
+        Schema::dropIfExists('user_profiles');
     }
 }
