@@ -20,3 +20,4 @@ use App\Http\Controllers\RestApi\AuthController;
 // });
 
 Route::post('/student/register', [AuthController::class, 'StudentRegister']);
+Route::post('/student/login', [AuthController::class, 'StudentLogin']);

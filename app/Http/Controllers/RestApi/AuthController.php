@@ -4,15 +4,21 @@ namespace App\Http\Controllers\RestApi;
 
 use App\Http\Controllers\Controller;
 use  App\Http\Services\StudentService;
+use  App\Http\Services\StudentLoginService;
 
 class AuthController extends Controller
 {
-    public function __construct(StudentService $studentService )
+    public function __construct()
     {
-        $this->studentService = $studentService;
+
     }
-    public function StudentRegister()
+    public function StudentRegister(StudentService $studentService)
     {
-        return $this->studentService->addStudent();
+        return $studentService->studentRegisterService();
+    }
+
+    public function StudentLogin(StudentLoginService $studentLoginService)
+    {
+        return $studentLoginService->studentLoginService();
     }
 }

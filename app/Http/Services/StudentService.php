@@ -22,7 +22,7 @@ class StudentService
         $this->request = $request;
     }
 
-    public function addStudent()
+    public function studentRegisterService()
     {
         try {
             $validated = $this->request->validated();
@@ -60,10 +60,10 @@ class StudentService
         } catch (\Throwable $th) {
             Log::error($th);
             //return response()->json(['error' => $th->getMessage()], 500);
-        }finally{
-            if(!empty($th)){
-                if($th instanceof QueryException || $th instanceof \Throwable)
-                return response()->json(['error' => 'Something went wrong.'], 500);
+        } finally {
+            if (!empty($th)) {
+                if ($th instanceof QueryException || $th instanceof \Throwable)
+                    return response()->json(['error' => 'Something went wrong.'], 500);
             }
         }
     }
