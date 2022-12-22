@@ -19,12 +19,11 @@ class StudentLoginService
 
     public function studentLoginService()
     {
-        $this->request->only(['username', 'password']);
+        $request = $this->request->only(['email', 'password']);
         $data = [
-            'email' => $this->request->email,
-            'password' => $this->request->password
+            'email' => $request['email'],
+            'password' => $request['password']
         ];
-
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
             return response()->json(['token' => $token], 200);

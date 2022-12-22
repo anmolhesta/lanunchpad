@@ -21,3 +21,7 @@ use App\Http\Controllers\RestApi\AuthController;
 
 Route::post('/student/register', [AuthController::class, 'StudentRegister']);
 Route::post('/student/login', [AuthController::class, 'StudentLogin']);
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user/details', [AuthController::class, 'UserDetails']);
+    Route::put('/user/profile/update', [AuthController::class, 'UserProfileUpdate']);
+});
