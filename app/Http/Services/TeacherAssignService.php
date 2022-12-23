@@ -27,8 +27,10 @@ class TeacherAssignService
                     $user = User::find($data['teacher_id']);
                     $student = User::find($data['student_id']);
                     if ($user->hasRole('Teacher') && $student->hasRole('Student')) { {
+                           if(!$user->assigned()->where('teacher_id', $data['teacher_id'])->where('student_id', $data['student_id'])->exists()){
                             $user->assigned()->sync($data['student_id']);
                             $user->notify(new TeacherAssigned($student));
+                           }
                         }
                     }
                 }
