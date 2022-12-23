@@ -20,6 +20,5 @@ class CommonService
 
     public function userUpdateProfile(User $user)
     {
-        
     }
 }
