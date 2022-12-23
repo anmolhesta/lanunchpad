@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UserProfile','user_id');
     }
+
+    public function assigned()
+    {
+        return  $this->belongsToMany(self::class, 'student_teacher_assign', 'teacher_id', 'student_id');
+    }
 }

@@ -35,7 +35,8 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            if ($e instanceof QueryException || $e instanceof \Throwable)
+            return response()->json(['error' => 'Something went wrong.'], 500);
         });
     }
 }

@@ -31,7 +31,8 @@ class StudentService
                     'name' => $this->request->name,
                     'email' => $this->request->email,
                     'address' => $this->request->address,
-                    'password' => Hash::make($this->request->password)
+                    'password' => Hash::make($this->request->password),
+                    'ref_status_id' => 2,
                 ]);
 
                 if ($this->request->file('profile_picture')) {
@@ -46,7 +47,10 @@ class StudentService
                     'current_school_name' => $this->request->current_school_name,
                     'parent_details' => $this->request->parent_details,
                     'previous_school_name' => $this->request->previous_school_name,
+                    'ref_status_id' => 1,
                 ]);
+
+                $roleAssign =  $user->assignRole('Student');
 
                 return compact('user', 'profile');
             });
