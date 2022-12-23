@@ -15,6 +15,6 @@ class TeacherAssignedController extends Controller
 
     public function assignTeacher(TeacherAssignService $assignservice)
     {
-        $assignservice->assign();
+        return $assignservice->assign();
     }
 }

@@ -53,8 +53,8 @@ class TeacherAssigned extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'teacher_id' => $this->assigner->id,
-            'teacher_name' => $this->assigner->name,
+            'student_id' => $this->assigner->id,
+            'student_name' => $this->assigner->name,
         ];
     }
 
