@@ -26,4 +26,9 @@ class UserProfile extends Model
         'ref_status_id',
         'verified_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

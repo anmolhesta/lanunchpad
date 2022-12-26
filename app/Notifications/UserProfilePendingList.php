@@ -2,14 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Models\RefStatus;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserApproved extends Notification
+class UserProfilePendingList extends Notification
 {
     use Queueable;
 
@@ -18,9 +17,9 @@ class UserApproved extends Notification
      *
      * @return void
      */
-    public function __construct(User $approved)
+    public function __construct(Collection $user)
     {
-        $this->approved = $approved;
+        $this->user = $user;
     }
 
     /**
@@ -42,10 +41,12 @@ class UserApproved extends Notification
      */
     public function toMail($notifiable)
     {
+        $userCollection =  $this->user;
         return (new MailMessage)
-                    ->line('Your Account has been : '.RefStatus::where('id',$notifiable->profile->ref_status_id)->first()->name)
+                    ->line('User Profile Pending List.')
                     //->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    //->line('Thank you for using our application!');
+                    ->view('email.pending_profile',compact('userCollection'));
     }
 
     /**
