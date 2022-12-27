@@ -25,6 +25,7 @@ class TeacherAssignRequest extends FormRequest
     {
         $this->only('data','student_id','teacher_id');
         return [
+            'data' =>'required',
             'data.*' =>'required',
             'data.*.student_id' =>'required|int',
             'data.*.teacher_id' =>'required|int',
