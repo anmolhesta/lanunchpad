@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return  $this->belongsToMany(self::class, 'student_teacher_assign', 'teacher_id', 'student_id');
     }
+
+    public function expertise()
+    {
+        return  $this->belongsToMany(RefSubject::class, 'teacher_expertise_subjects', 'teacher_id', 'subject_id');
+    }
 }

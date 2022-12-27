@@ -23,6 +23,8 @@ use App\Http\Controllers\RestApi\UserProfileApprovedController;
 
 Route::post('/student/register', [AuthController::class, 'StudentRegister']);
 Route::post('/student/login', [AuthController::class, 'StudentLogin']);
+Route::post('/teacher/register', [AuthController::class, 'TeacherRegister']);
+
 Route::middleware('auth:api')->group(function () {
     Route::get('/user/details', [AuthController::class, 'UserDetails']);
     Route::put('/user/profile/update', [AuthController::class, 'UserProfileUpdate']);
