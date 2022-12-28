@@ -3,6 +3,9 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,9 +38,27 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            if ($e instanceof \Throwable){
+            if ($e instanceof \Throwable) {
                 return response()->json(['error' => 'Something went wrong.'], 500);
             }
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Throwable) {
+            if($exception instanceof NotFoundHttpException){
+                return response()->json(['error' => 'Something went wrong.'], 500);
+            }elseif($exception instanceof MethodNotAllowedException){
+                return response()->json(['error' => 'Something went wrong.'], 500);
+            }elseif($exception instanceof RouteNotFoundException){
+                dd($exception);
+                return response()->json(['error' => 'Something went wrong.'], 500);
+            }
+            else {
+                return response()->json(['error' => $exception], 500);
+            }
+        }
+        return parent::render($request, $exception);
     }
 }
