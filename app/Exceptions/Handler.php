@@ -52,7 +52,6 @@ class Handler extends ExceptionHandler
             }elseif($exception instanceof MethodNotAllowedException){
                 return response()->json(['error' => 'Something went wrong.'], 500);
             }elseif($exception instanceof RouteNotFoundException){
-                dd($exception);
                 return response()->json(['error' => 'Something went wrong.'], 500);
             }
             else {
