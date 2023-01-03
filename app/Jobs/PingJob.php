@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class PingJob implements ShouldQueue
 {
@@ -31,6 +32,7 @@ class PingJob implements ShouldQueue
      */
     public function handle()
     {
-        return json_encode(User::all()->toArray());
+        //Log::info(json_encode(User::all()->toArray()));
+        json_encode(User::all()->toArray());
     }
 }

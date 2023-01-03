@@ -41,6 +41,6 @@ class PingJobCommand extends Command
     {
         // PingJob::dispatch();
     //    $data=  PingJob::dispatch(User::inRandomOrder()->first()->toArray());
-       PingJob::dispatch()->onQueue('database');
+       PingJob::dispatch()->onConnection('rabbitmq');
     }
 }
